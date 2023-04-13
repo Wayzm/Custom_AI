@@ -1,3 +1,9 @@
+/*
+* @file nn.h
+* @brief Main class
+*
+*
+*/
 #ifndef NN
 #define NN
 
@@ -18,6 +24,12 @@ public:
     ~nn(){};
 
 protected:
+
+    std::vector<T> Weight_Matrix, Weight_Matrix_D;
+
+    std::vector<T> Bias_Matrix, Bias_Matrix_D;
+
+    std::vector<T> Hidden_layer, Hidden_layer_D;
 
     T learning_rate, learning_rate_inertie;
 
