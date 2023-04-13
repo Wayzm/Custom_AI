@@ -57,16 +57,22 @@ public:
 
 private:
 
+    /// @brief Shape of the neural network
     std::vector<ui32> nn_shape;
 
+    /// @brief Matrices with the weight values in the neural network for the propagation and backpropagation
     std::vector<std::vector<T>> Weight_Matrix, Weight_Matrix_D;
 
+    /// @brief Matrices with the bias values in the neural network for the propagation and the backpropagation
     std::vector<std::vector<T>> Bias_Matrix, Bias_Matrix_D;
 
+    /// @brief Matrices with each node's value
     std::vector<std::vector<T>> Hidden_layer, Hidden_layer_D;
 
+    /// @brief Learning rates used for the weight update methods
     T learning_rate, learning_rate_inertie;
 
+    /// @brief Error computed at teh output layer during the learning phase
     T err;
 
     ui32 nbr_element;
@@ -82,8 +88,10 @@ private:
     /// @brief Default weight configuration
     void init_weight(const T min, const T max);
 
+    /// @brief
     void inertie();
 
+    /// @brief
     void standard();
 
     /// @brief Update the weight on the different nodes following the current_weight_method
