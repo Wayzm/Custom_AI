@@ -28,7 +28,7 @@ public:
     void set_last_layer_activation_method(activation_functions selected_function);
 
 private:
-    /// @brief Our current functions
+    /// @brief Current functions
     activation_functions current_activation_function, last_layer_current_activation_function;
 
     /// @brief Sigmoid function

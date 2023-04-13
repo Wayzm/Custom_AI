@@ -16,7 +16,15 @@ public:
     /// @brief Sub class with the list of weight functions
     enum class weight_functions{inertie, standard};
 
+    /// @brief Fix the weight method
+    /// @param selected_method
+    void set_weight_method(weight_functions selected_method);
+
 private:
+    /// @brief Current weight method in use
+    weight_functions current_weight_method;
+
+    /// @brief Update the weight on the different nodes following the current_weight_method
     void update_weight();
 
 
