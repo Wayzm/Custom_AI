@@ -22,3 +22,20 @@ template <typename T> void compute<T>::axpy(const std::vector<T> x,
 
     y = temp_vector;
 }
+
+template <typename T> void compute<T>::emm(const std::vector<std::vector<T>> X,
+                                           const std::vector<std::vector<T>> Y,
+                                           const T a,
+                                           std::vector<std::vector<T>> Z,
+                                           const T b){
+    /* MEMORY MANAGEMENT */
+
+}
+
+template <typename T> void compute<T>::emv(const std::vector<std::vector<T>> X,
+                                           const std::vector<T> y,
+                                           const T a,
+                                           std::vector<T> z,
+                                           const T b){
+    /* MEMORY MANAGEMENT */
+}
