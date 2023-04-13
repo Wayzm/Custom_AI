@@ -76,6 +76,10 @@ public:
     /// @param selected_function
     void set_last_layer_activation_method(activation_functions selected_function);
 
+    /*  ----------------    nn_solve.cpp -----------------  */
+
+    T get_err();
+
 private:
 
     /// @brief Shape of the neural network
@@ -189,6 +193,15 @@ private:
 
     /// @brief Set the nn_shape from user input
     void set_shape();
+
+    /*  -------------- nn_solve.cpp ---------------     */
+    void propagation();
+
+    void backpropagation();
+
+    void compute_output();
+
+    T compute_err();
 };
 
 #endif
