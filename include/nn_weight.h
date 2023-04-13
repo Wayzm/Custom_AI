@@ -14,9 +14,6 @@
 template <typename T> class NN_weight:nn{
 
 public:
-    /// @brief Sub class with the list of weight functions
-    enum class weight_functions{inertie, standard};
-
     /// @brief Fix the weight method
     /// @param selected_method
     void set_weight_method(weight_functions selected_method);
@@ -27,6 +24,9 @@ public:
     ~NN_weight(){};
 
 private:
+    /// @brief Sub class with the list of weight functions
+    enum class weight_functions{inertie, standard};
+
     /// @brief Default weight seed
     ui32 weight_seed = 1337;
 

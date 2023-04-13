@@ -23,9 +23,6 @@ public:
     /// @brief Destructor
     ~NN_activation(){};
 
-    /// @brief Sub class with the list of the different implemented activation functions
-    enum class activation_functions{sigmoid, tanh, relu, linear};
-
     /// @brief Fix the activation for the hidden layers
     /// @param selected_function
     void set_activation_method(activation_functions selected_function);
@@ -35,6 +32,9 @@ public:
     void set_last_layer_activation_method(activation_functions selected_function);
 
 private:
+    /// @brief Sub class with the list of the different implemented activation functions
+    enum class activation_functions{sigmoid, tanh, relu, linear};
+
     /// @brief Current functions
     activation_functions current_activation_function, last_layer_current_activation_function;
 
