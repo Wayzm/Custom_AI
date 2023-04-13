@@ -17,7 +17,7 @@ template <typename T> class NN_activation:nn{
 
 public:
 
-    /// @brief Constructor
+    /// @brief Constructor with default settings (sigmoid for hidden layer and linear for output layer)
     NN_activation();
 
     /// @brief Destructor
@@ -59,14 +59,14 @@ private:
     T linear(T x);
 
     /// @brief derivative function of tanh(x)
-    /// @param x
+    /// @param tan_x
     /// @return 1 - tanh_x * tanh_x
-    T derivative_tanh(T x);
+    T derivative_tanh(T tan_x);
 
     /// @brief derivative function of sigmoid
-    /// @param x
-    /// @return
-    T derivative_sigmoid(T x);
+    /// @param sigmoid_x
+    /// @return sigmoid_x (1 - sigmoid_x)
+    T derivative_sigmoid(T sigmoid_x);
 
     /// @brief Derivative of linear function
     /// @param x
@@ -75,7 +75,7 @@ private:
 
     /// @brief Derivative of relu function
     /// @param x
-    /// @return 3.14
+    /// @return 1 or 0
     T derivative_relu(T x);
 
     /// @brief Depending on the variable current_activation_function, will return the corresponding result
