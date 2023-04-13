@@ -27,14 +27,18 @@ template <typename T> void NN_weight<T>::init_weight(const ui32 seed, const T mi
     }
 
     // Random initialisation for each node
-    for(auto &element : Weight_Matrix)
-        element = dis(gen);
-    for(auto &element : Weight_Matrix_D)
-        element = 0;
-    for(auto &element : Bias_Matrix)
-        element = dis(gen);
-    for(auto &element : Bias_Matrix_D)
-        element = 0;
+    for(auto &vector_w : Weight_Matrix)
+        for(auto &element : vector_w)
+            element = dis(gen);
+    for(auto &vector_w : Weight_Matrix_D)
+        for(auto &element : vector_w)
+            element = 0;
+    for(auto &vector_b : Bias_Matrix)
+        for(auto &element : vector_b)
+            element = dis(gen);
+    for(auto &vector_b : Bias_Matrix_D)
+        for(auto &element : vector_b)
+            element = 0;
 }
 
 template <typename T> void NN_weight<T>::update_weight(){
