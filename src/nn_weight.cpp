@@ -95,10 +95,6 @@ template <typename T> void nn<T>::standard(){
     }
 }
 
-template <typename T> void nn<T>::standard(){
-
-}
-
 template <typename T> void nn<T>::update_weight(){
   switch(current_weight_method){
     case weight_functions::inertie:
