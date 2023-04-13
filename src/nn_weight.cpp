@@ -53,9 +53,9 @@ template <typename T> void nn<T>::inertie(){
         const std::vector<T> Old_weight_vector = Weight_Matrix[i];
 
         /*  UPDATE BIAS VALUES  */
+        const auto tmp = NN_layers_D[i];
         for(ui32 j = 0U; j < nn_shape[i+1]; ++j){
-            const T tmp = NN_layers_D[i][j];
-            Bias_Matrix[i][j] -= learning_rate * learning_rate_inertie * tmp;
+            Bias_Matrix[i][j] -= learning_rate * learning_rate_inertie * tmp[j];
             Bias_Matrix[i][j] += (1 - learning_rate_inertie) * Bias_Matrix_D[i][j];
             Bias_Matrix_D[i][j] = Bias_Matrix[i][j] - Old_bias_vector[i];
         }
@@ -71,6 +71,27 @@ template <typename T> void nn<T>::inertie(){
         Weight_Matrix_D[i] = Weight_Matrix[i];
         for(ui32 j = 0U; j < Old_weight_vector.size(); ++j)
             Weight_Matrix_D[i][j] -= Old_weight_vector[j];
+    }
+}
+
+template <typename T> void nn<T>::standard(){
+    /* CONSTRUCTION OF BLAS APPLICATION */
+    compute<T> c;
+    /* MAIN LOOP */
+    const auto last_layer_index = nn_shape.size() - 1;
+    #pragma omp parallel for schedule(dynamic, 1)
+    for(ui32 i = 0U; i < last_layer_index; ++i){
+        /*  UPDATE BIAS VALUES  */
+        const auto tmp = NN_layers_D[i];
+        for(ui32 j = 0U; j < nn_shape[i+1]; ++j){
+            Bias_Matrix[i][j] -= learning_rate * tmp[j];
+        }
+
+        /*      WEIGHT MODIFICATION     */
+        c.emm(NN_layers_D[i], nn_shape[i + 1], 1,
+              NN_layers[i], 1, nn_shape[i],
+              (1 - learning_rate_inertie),
+              Weight_Matrix[i], nn_shape[i + 1], nn_shape[i], 1.0);
     }
 }
 
