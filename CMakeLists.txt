@@ -25,7 +25,7 @@ add_compile_options(
                       -fopt-info-all=miram.gcc.optrpt
                       )
 
-add_library(custom_lib STATIC src/nn.cpp src/nn_weight.cpp src/nn_activation.cpp)
+add_library(custom_lib STATIC src/nn.cpp src/nn_weight.cpp src/nn_activation.cpp src/compute.cpp)
 add_executable(AI.EXE src/main.cpp)
 
 target_compile_options(custom_lib PRIVATE)
