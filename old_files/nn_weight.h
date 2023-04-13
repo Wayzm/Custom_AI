@@ -18,10 +18,10 @@ public:
     /// @param selected_method
     void set_weight_method(weight_functions selected_method);
 
-    /// @brief Constructor with default weight settings
-    NN_weight();
-    /// @brief Destructor
-    ~NN_weight(){};
+    /// @brief Fix the weight method and the desired seed number
+    /// @param selected_method
+    /// @param seed
+    void set_weight_method(weight_functions selected_method, const ui32 seed);
 
 private:
     /// @brief Sub class with the list of weight functions
@@ -34,7 +34,7 @@ private:
     weight_functions current_weight_method;
 
     /// @brief Default weight configuration
-    void init_weight(const ui32 seed, const T min, const T max);
+    void init_weight(const T min, const T max);
 
     void inertie();
 

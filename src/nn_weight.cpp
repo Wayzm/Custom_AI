@@ -1,15 +1,15 @@
 #include "nn.h"
-#include "nn_weight.h"
 
-template <typename T> NN_weight<T>::NN_weight(){
-    init_weight(weight_seed, 0, 1);
-}
-
-template <typename T> void NN_weight<T>::set_weight_method(weight_functions selected_method){
+template <typename T> void  nn<T>::set_weight_method(weight_functions selected_method){
     current_weight_method = selected_method;
 }
 
-template <typename T> void NN_weight<T>::init_weight(const ui32 seed, const T min, const T max){
+template <typename T> void nn<T>::set_weight_method(weight_functions selected_method, const ui32 seed){
+    current_weight_method = selected_method;
+    weight_seed = seed;
+}
+
+template <typename T> void nn<T>::init_weight(const T min, const T max){
     assert(min <= max);
 
     // Used to generate a random number engine
@@ -18,12 +18,12 @@ template <typename T> void NN_weight<T>::init_weight(const ui32 seed, const T mi
     std::uniform_real_distribution<T> dis(min, max);
 
     // Default behavior
-    if(seed == 1337){
+    if(weight_seed == 1337){
         std::seed_seq seeds({rd(), rd(), rd(), rd()});
         gen.seed(seeds);
     }
     else{
-        gen.seed(seed);
+        gen.seed(weight_seed);
     }
 
     // Random initialisation for each node
@@ -41,7 +41,7 @@ template <typename T> void NN_weight<T>::init_weight(const ui32 seed, const T mi
             element = 0;
 }
 
-template <typename T> void NN_weight<T>::update_weight(){
+template <typename T> void nn<T>::update_weight(){
   switch(current_weight_method){
     case weight_functions::inertie:
       inertie();

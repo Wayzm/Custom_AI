@@ -13,7 +13,7 @@
 #include "nn.h"
 
 /// @brief  Class with the different methods for node activation in the NN
-template <typename T> class NN_activation:nn{
+template <typename T> class NN_activation{
 
 public:
 
