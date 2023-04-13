@@ -21,7 +21,7 @@ public:
     NN_activation();
 
     /// @brief Destructor
-    ~NN_activation();
+    ~NN_activation(){};
 
     /// @brief Sub class with the list of the different implemented activation functions
     enum class activation_functions{sigmoid, tanh, relu, linear};
