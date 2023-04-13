@@ -12,7 +12,7 @@
 
 #include "nn_headers.h"
 
-
+// So, as we though there are full matrices in weight/bias
 
 template <typename T> class compute{
 public:
@@ -26,14 +26,26 @@ public:
 
     /// @brief Z := a * X * Y + b * Z
     /// @param X
+    /// @param rows_x
+    /// @param cols_x
     /// @param Y
+    /// @param rows_y
+    /// @param cols_y
     /// @param a
     /// @param Z
+    /// @param rows_z
+    /// @param cols_z
     /// @param b
-    void emm(const std::vector<std::vector<T>> X,
-             const std::vector<std::vector<T>> Y,
+    void emm(const std::vector<T> X,
+             const ui32 rows_x,
+             const ui32 cols_x,
+             const std::vector<T> Y,
+             const ui32 rows_y,
+             const ui32 cols_y,
              const T a,
              std::vector<std::vector<T>> Z,
+             const ui32 rows_z,
+             const ui32 cols_z,
              const T b);
 
     /// @brief z = a * X * y + b * z
@@ -52,7 +64,7 @@ private:
     std::vector<T> temp_vector;
 
     /// @brief Temporary matrix for parallelisation purposes
-    std::vector<std::vector<T>> temp_matrix;
+    std::vector<T> temp_matrix;
 };
 #endif
 
