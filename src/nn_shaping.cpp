@@ -33,6 +33,7 @@ template <typename T> void nn<T>::shaping(){
     Weight_Matrix_D.resize(number_of_layers - 1);
     Bias_Matrix.resize(number_of_layers - 1);
     Bias_Matrix_D.resize(number_of_layers - 1);
+    Output.resize(nn_shape[number_of_layers -1]);
 
     for(auto i = 0U; i < number_of_layers - 1; ++i){
         NN_layers.resize(nn_shape[i]);

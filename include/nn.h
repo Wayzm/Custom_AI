@@ -195,11 +195,17 @@ private:
     void set_shape();
 
     /*  -------------- nn_solve.cpp ---------------     */
+    std::vector<T> Output;
+
+    void training();
+
     void propagation();
 
     void backpropagation();
 
     void compute_output();
+
+    void compute_err();
 
     T compute_err();
 };
