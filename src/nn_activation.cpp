@@ -33,10 +33,6 @@ template <typename T> T NN_activation<T>::derivative_relu(T x){
     return (0 < x) ? 1 : 0;
 }
 
-template <typename T> T NN_activation<T>::relu(T x){
-    return std::max(0, x);
-}
-
 template <typename T> T NN_activation<T>::activation(T x){
   switch(current_activation_function){
     case activation_functions::sigmoid:
