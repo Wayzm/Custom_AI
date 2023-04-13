@@ -23,10 +23,31 @@ public:
     /// @brief Default construction of the neural network
     nn();
 
-    /// @brief Determine the shape and the number of elements
+    /// @brief Determine the shape and the activation function for the propagation
     /// @param nn_shape
-    /// @param nbr_elements
-    nn(const std::vector<ui32> nn_shape, const ui32 nbr_elements);
+    /// @param act_function
+    nn(const std::vector<ui32> nn_shape, const activation_functions act_function);
+
+    /// @brief Fix the shape and the weight actualisation method
+    /// @param nn_shape
+    /// @param weight_method
+    nn(const std::vector<ui32> nn_shape, const weight_functions weight_method);
+
+    /// @brief Fix the shape, the activation function for the propagation and the weight actualisation method
+    /// @param nn_shape
+    /// @param act_function
+    /// @param weight_method
+    nn(const std::vector<ui32> nn_shape, const activation_functions act_function, const weight_functions weight_method);
+
+    /// @brief Fix the shape, all activation functions and the weight actualisation method
+    /// @param nn_shape
+    /// @param act_function
+    /// @param last_layer_act_function
+    /// @param weight_method
+    nn(const std::vector<ui32> nn_shape,
+       const activation_functions act_function,
+       const activation_functions last_layer_act_function,
+       const weight_functions weight_method);
 
     /// @brief Destructor
     ~nn(){};
@@ -66,16 +87,14 @@ private:
     /// @brief Matrices with the bias values in the neural network for the propagation and the backpropagation
     std::vector<std::vector<T>> Bias_Matrix, Bias_Matrix_D;
 
-    /// @brief Matrices with each node's value
-    std::vector<std::vector<T>> Hidden_layer, Hidden_layer_D;
+    /// @brief Matrices with each node's value (input, hidden and output layers)
+    std::vector<std::vector<T>> NN_layers, NN_layers_D;
 
     /// @brief Learning rates used for the weight update methods
     T learning_rate, learning_rate_inertie;
 
     /// @brief Error computed at teh output layer during the learning phase
     T err;
-
-    ui32 nbr_element;
 
     /* --------------------   nn_weight.cpp  -------------------  */
 
@@ -163,6 +182,13 @@ private:
     /// @return derivative of the current function in the last layer (x)
     T last_layer_derivative_activation(T x);
 
+    /*  -------------- nn_shaping.cpp -------------     */
+
+    /// @brief Memory allocation of all structures in the nn
+    void shaping();
+
+    /// @brief Set the nn_shape from user input
+    void set_shape();
 };
 
 #endif
