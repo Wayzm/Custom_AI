@@ -1,5 +1,10 @@
 #include "nn_activation.h"
 
+template <typename T> NN_activation<T>::NN_activation(){
+    current_activation_function = sigmoid;
+    last_layer_current_activation_function = linear;
+}
+
 template <typename T> T NN_activation<T>::sigmoid(T x){
     return 1 / (1 + std::exp(-x));
 }

@@ -10,11 +10,18 @@
 #define NN_ACTIVATION
 
 #include "nn_headers.h"
+#include "nn.h"
 
 /// @brief  Class with the different methods for node activation in the NN
-template <typename T> class NN_activation{
+template <typename T> class NN_activation:nn{
 
 public:
+
+    /// @brief Constructor
+    NN_activation();
+
+    /// @brief Destructor
+    ~NN_activation();
 
     /// @brief Sub class with the list of the different implemented activation functions
     enum class activation_functions{sigmoid, tanh, relu, linear};
