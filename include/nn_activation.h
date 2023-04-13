@@ -83,9 +83,12 @@ private:
 
     /// @brief Depending on the variable current_activation_function, will return the derivative of that function
     /// @param x
-    /// @return reciprocal derivative of the current function (x)
+    /// @return derivative of the current function (x)
     T derivative_activation(T x);
 
+    /// @brief Depending on the variable last_layer_current_activation_function, will return the derivative of that function
+    /// @param x
+    /// @return derivative of the current function in the last layer (x)
     T last_layer_derivative_activation(T x);
 
 };
