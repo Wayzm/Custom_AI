@@ -19,7 +19,18 @@ public:
     /// @brief Sub class with the list of the different implemented activation functions
     enum class activation_functions{sigmoid, tanh, relu, linear};
 
+    /// @brief Fix the activation for the hidden layers
+    /// @param selected_function
+    void set_activation_method(activation_functions selected_function);
+
+    /// @brief Fix the activation for the output layer
+    /// @param selected_function
+    void set_last_layer_activation_method(activation_functions selected_function);
+
 private:
+    /// @brief Our current functions
+    activation_functions current_activation_function, last_layer_current_activation_function;
+
     /// @brief Sigmoid function
     /// @param x
     /// @return 1 / (1 + e^(-x))
@@ -27,12 +38,12 @@ private:
 
     /// @brief Tanh function
     /// @param x
-    /// @return 2 / (1 + e^(-2 * x)) -1
+    /// @return 2 / (1 + e^(-2 * x)) - 1
     T tanh(T x);
 
     /// @brief Relu function
     /// @param x
-    /// @return WIP
+    /// @return max(0, x)
     T relu(T x);
 
     /// @brief Simple linear function
@@ -40,33 +51,42 @@ private:
     /// @return 3.14 * x
     T linear(T x);
 
-    /// @brief
+    /// @brief derivative function of tanh(x)
+    /// @param x
+    /// @return 1 - tanh_x * tanh_x
+    T derivative_tanh(T x);
+
+    /// @brief derivative function of sigmoid
     /// @param x
     /// @return
-    T reciprocal_derivative_tanh(T x);
+    T derivative_sigmoid(T x);
 
-    /// @brief
+    /// @brief Derivative of linear function
     /// @param x
-    /// @return
-    T reciprocal_derivative_sigmoid(T x);
+    /// @return 3.14
+    T derivative_linear(T x);
 
-    /// @brief
-    /// @param void
-    /// @return
-    T reciprocal_derivative_linear();
-
-    /// @brief
+    /// @brief Derivative of relu function
     /// @param x
-    /// @return
+    /// @return 3.14
     T derivative_relu(T x);
 
+    /// @brief Depending on the variable current_activation_function, will return the corresponding result
+    /// @param x
+    /// @return current_activation_function(x)
     T activation(T x);
 
+    /// @brief Depending on the variable last_layer_current_activation_function, will return the corresponding result
+    /// @param x
+    /// @return last_layer_current_activation_function(x)
     T last_layer_activation(T x);
 
-    T reciprocal_derivative_activation(T x);
+    /// @brief Depending on the variable current_activation_function, will return the derivative of that function
+    /// @param x
+    /// @return reciprocal derivative of the current function (x)
+    T derivative_activation(T x);
 
-    T last_layer_reciprocal_derivative_activation(T x);
+    T last_layer_derivative_activation(T x);
 
 };
 
