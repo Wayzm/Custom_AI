@@ -99,3 +99,11 @@ template <typename T> T NN_activation<T>::last_layer_derivative_activation(T x){
     }
     return 0;
 }
+
+template <typename T> void NN_activation<T>::set_activation_method(activation_functions selected_function){
+  current_activation_function = selected_function;
+}
+
+template <typename T> void NN_activation<T>::set_last_layer_activation_method(activation_functions selected_function){
+  last_layer_current_activation_function = selected_function;
+}
