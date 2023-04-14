@@ -69,5 +69,3 @@ template <typename T> void nn<T>::backpropagation(){
     }
 }
 
-template class nn<f32>;
-template class nn<f64>;

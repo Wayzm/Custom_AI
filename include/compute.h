@@ -43,7 +43,7 @@ public:
              const ui32 rows_y,
              const ui32 cols_y,
              const T a,
-             std::vector<std::vector<T>> Z,
+             std::vector<T> Z,
              const ui32 rows_z,
              const ui32 cols_z,
              const T b);

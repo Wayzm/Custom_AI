@@ -47,6 +47,3 @@ template <typename T> void nn<T>::shaping(){
     NN_layers[number_of_layers - 1].resize(nn_shape[number_of_layers - 1]);
 
 }
-
-template class nn<f32>;
-template class nn<f64>;

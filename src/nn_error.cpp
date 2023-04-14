@@ -85,6 +85,3 @@ template <typename T> void nn<T>::compute_error(){
         break;
     }
 }
-
-template class nn<f32>;
-template class nn<f64>;

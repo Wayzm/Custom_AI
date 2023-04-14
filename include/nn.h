@@ -261,5 +261,6 @@ private:
     void backpropagation();
 
 };
-
+template class nn<f32>;
+template class nn<f64>;
 #endif

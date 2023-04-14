@@ -116,6 +116,3 @@ template <typename T> void nn<T>::update_weight(){
       break;
   }
 }
-
-template class nn<f32>;
-template class nn<f64>;

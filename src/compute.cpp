@@ -30,14 +30,13 @@ template <typename T> void compute<T>::emm(const std::vector<T> X,
                                            const ui32 rows_y,
                                            const ui32 cols_y,
                                            const T a,
-                                           std::vector<std::vector<T>> Z,
+                                           std::vector<T> Z,
                                            const ui32 rows_z,
                                            const ui32 cols_z,
                                            const T b){
     /* MEMORY MANAGEMENT */
     assert(cols_x == rows_y);
     assert(rows_z == rows_x && cols_y == cols_z);
-    assert(Z != NULL);
     temp_matrix.resize(rows_x * cols_y);
 
     /* EMM MAIN LOOP */

@@ -14,7 +14,7 @@ template <typename T> T nn<T>::linear(T x){
 }
 
 template <typename T> T nn<T>::relu(T x){
-    return std::max(0, x);
+    return (0 < x) ? x : 0;
 }
 
 template <typename T> T nn<T>::derivative_sigmoid(T sigmoid_x){
@@ -108,6 +108,3 @@ template <typename T> void nn<T>::set_activation_method(activation_functions sel
 template <typename T> void nn<T>::set_last_layer_activation_method(activation_functions selected_function){
   last_layer_current_activation_function = selected_function;
 }
-
-template class nn<f32>;
-template class nn<f64>;
