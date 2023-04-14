@@ -96,7 +96,7 @@ public:
 
     /// @brief User function to use the neural network with a given input
     /// @param Input
-    void compute_output(const std::vector<T> Input);
+    std::vector<T> compute_output(const std::vector<T> Input);
 
     /*  ----------------    nn_error.cpp -----------------  */
 

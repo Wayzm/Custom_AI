@@ -4,6 +4,8 @@
 template <typename T> void nn<T>::training_supervised(const std::vector<T> Input, const std::vector<T> Output){
     assert(NN_layers[0].size() == Input.size());
     assert(this->Output.size() == Output.size());
+    NN_layers[0] = Input;
+    this->Output = Output;
     compute<T> c;
     c.normalisation(NN_layers[0]);
     c.normalisation(this->Output);
@@ -11,6 +13,16 @@ template <typename T> void nn<T>::training_supervised(const std::vector<T> Input
     compute_error();
     backpropagation();
     update_weight();
+}
+
+template <typename T> std::vector<T> nn<T>::compute_output(const std::vector<T> Input){
+    assert(NN_layers[0].size() == Input.size());
+    const ui32 last_layer_index = nn_shape.size() - 1;
+    NN_layers[0] = Input;
+    compute<T> c;
+    c.normalisation(NN_layers[0]);
+    propagation();
+    return(NN_layers[last_layer_index]);
 }
 
 template <typename T> void nn<T>::propagation(){
