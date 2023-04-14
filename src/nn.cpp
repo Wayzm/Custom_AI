@@ -73,3 +73,5 @@ template <typename T> nn<T>::nn(const std::vector<ui32> nn_shape,
     init_weight(0, 1);
 }
 
+template class nn<f32>;
+template class nn<f64>;

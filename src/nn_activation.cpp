@@ -108,3 +108,6 @@ template <typename T> void nn<T>::set_activation_method(activation_functions sel
 template <typename T> void nn<T>::set_last_layer_activation_method(activation_functions selected_function){
   last_layer_current_activation_function = selected_function;
 }
+
+template class nn<f32>;
+template class nn<f64>;

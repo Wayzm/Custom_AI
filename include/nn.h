@@ -11,7 +11,7 @@
 
 template <typename T> class nn{
 
-private:
+public:
     /// @brief Sub class with the list of the different implemented activation functions
     enum class activation_functions{sigmoid, tanh, relu, linear};
 
@@ -261,6 +261,4 @@ private:
     void backpropagation();
 
 };
-template class nn<f32>;
-template class nn<f64>;
 #endif
