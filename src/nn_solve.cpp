@@ -22,6 +22,7 @@ template <typename T> std::vector<T> nn<T>::compute_output(const std::vector<T> 
     compute<T> c;
     c.normalisation(NN_layers[0]);
     propagation();
+    compute_error();
     return(NN_layers[last_layer_index]);
 }
 
@@ -67,3 +68,6 @@ template <typename T> void nn<T>::backpropagation(){
             NN_layers_D[i - 1][j] *= derivative_activation(NN_layers[i][j]);
     }
 }
+
+template class nn<f32>;
+template class nn<f64>;

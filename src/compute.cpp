@@ -73,3 +73,6 @@ template <typename T> void compute<T>::normalisation(std::vector<T> vector){
     for(auto &val : vector)
         val /= max;
 }
+
+template class compute<f32>;
+template class compute<f64>;
