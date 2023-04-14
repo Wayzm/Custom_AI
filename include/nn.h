@@ -250,8 +250,10 @@ private:
     /*  -------------- nn_solve.cpp ---------------     */
     std::vector<T> Output;
 
+    /// @brief Forward propagation for supervised model
     void propagation();
 
+    /// @brief Backpropagation for supervised model
     void backpropagation();
 
 };
