@@ -199,7 +199,7 @@ private:
     /// @brief Derivative of linear function
     /// @param x
     /// @return 3.14
-    T derivative_linear(T x);
+    T derivative_linear();
 
     /// @brief Derivative of relu function
     /// @param x

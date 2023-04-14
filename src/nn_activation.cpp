@@ -29,6 +29,10 @@ template <typename T> T nn<T>::derivative_relu(T x){
     return (0 < x) ? 1 : 0;
 }
 
+template <typename T> T nn<T>::derivative_linear(){
+    return 3.14;
+}
+
 template <typename T> T nn<T>::activation(T x){
   switch(current_activation_function){
     case activation_functions::sigmoid:
@@ -72,7 +76,7 @@ template <typename T> T nn<T>::derivative_activation(T x){
     case activation_functions::relu:
       return derivative_relu(x);
     case activation_functions::linear:
-      return derivative_linear(x);
+      return derivative_linear();
     default:
       std::cerr << "Activation function unknown." << std::endl;
       break;
