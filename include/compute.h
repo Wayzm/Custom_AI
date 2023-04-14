@@ -59,6 +59,10 @@ public:
              const T a,
              std::vector<T> z,
              const T b);
+
+    /// @brief Use the first norm
+    /// @param vector
+    void normalisation(std::vector<T> vector);
 private:
     /// @brief Temporary vector for parallelisation purposes
     std::vector<T> temp_vector;

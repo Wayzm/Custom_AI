@@ -58,10 +58,18 @@ template <typename T> void compute<T>::emm(const std::vector<T> X,
     Z = temp_matrix;
 }
 
-template <typename T> void compute<T>::emv(const std::vector<std::vector<T>> X,
-                                           const std::vector<T> y,
-                                           const T a,
-                                           std::vector<T> z,
-                                           const T b){
-    /* MEMORY MANAGEMENT */
+template <typename T> void compute<T>::normalisation(std::vector<T> vector){
+    const ui32 vec_size = vector.size();
+    T max = 0;
+    for(ui32 i = 0U; i < vec_size; ++i){
+        const T tmp = std::fabs(vector[i]);
+        if(max < tmp)
+            max = tmp;
+    }
+    // Avoid any risk of FPE
+    if(max == 0)
+        max = 1;
+
+    for(auto &val : vector)
+        val /= max;
 }
