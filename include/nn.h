@@ -92,7 +92,7 @@ public:
     /// @brief User function to train the neural network with an array of inputs and corresponding outputs
     /// @param Inputs
     /// @param Outputs
-    void training_supervised(const std::vector<std::vector<T>> Inputs, const std::vector<std::vector<T>> Outputs);
+    void training_supervised(const std::vector<T> Input, const std::vector<T> Output);
 
     /// @brief User function to use the neural network with a given input
     /// @param Input

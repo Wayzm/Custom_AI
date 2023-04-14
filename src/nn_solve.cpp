@@ -1,7 +1,17 @@
 #include "nn.h"
 #include "compute.h"
 
-
+template <typename T> void nn<T>::training_supervised(const std::vector<T> Input, const std::vector<T> Output){
+    assert(NN_layers[0].size() == Input.size());
+    assert(this->Output.size() == Output.size());
+    compute<T> c;
+    c.normalisation(NN_layers[0]);
+    c.normalisation(this->Output);
+    propagation();
+    compute_error();
+    backpropagation();
+    update_weight();
+}
 
 template <typename T> void nn<T>::propagation(){
     const ui32 last_layer_index = nn_shape.size() - 1;
