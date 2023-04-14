@@ -19,11 +19,11 @@ private:
     enum class weight_functions{inertie, standard};
 
     /// @brief Sub class with the list of loss functions
-    enum class loss_functions(mean_squared_error,
+    enum class loss_functions{mean_squared_error,
                               mean_absolute_error,
                               hinge_error,
                               cross_entropy_error,
-                              mean_bias_error);
+                              mean_bias_error};
 
 public:
 
@@ -245,9 +245,6 @@ private:
 
     void compute_output();
 
-    void compute_err();
-
-    T compute_err();
 };
 
 #endif
