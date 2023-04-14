@@ -32,5 +32,16 @@ template <typename T> void nn<T>::propagation(){
 }
 
 template <typename T> void nn<T>::backpropagation(){
-
+    const ui32 last_layer_index = nn_shape.size() - 1;
+    compute<T> c;
+    for(ui32 i = last_layer_index - 1; i > 0U; --i){
+        c.emm(Weight_Matrix[i], nn_shape[i], nn_shape[i + 1],
+              NN_layers_D[i], nn_shape[i + 1], 1,
+              1.0,
+              NN_layers_D[i - 1], nn_shape[i], 1,
+              1.0);
+        #pragma omp parallel for schedule(dynamic, 1)
+        for(ui32 j = 0U; j < nn_shape[i]; ++j)
+            NN_layers_D[i - 1][j] *= derivative_activation(NN_layers[i][j]);
+    }
 }
