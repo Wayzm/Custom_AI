@@ -6,6 +6,7 @@ template <typename T> nn<T>::nn(){
     current_weight_method = standard;
     current_activation_function = sigmoid;
     last_layer_current_activation_function = linear;
+    current_loss_method = mean_squared_error;
     learning_rate = 0.1;
     learning_rate_inertie = 0.05;
     set_shape();
@@ -19,6 +20,7 @@ template <typename T> nn<T>::nn(const std::vector<ui32> nn_shape,
     current_weight_method = standard;
     current_activation_function = act_function;
     last_layer_current_activation_function = linear;
+    current_loss_method = mean_squared_error;
     learning_rate = 0.1;
     learning_rate_inertie = 0.05;
     shaping();
@@ -31,6 +33,7 @@ template <typename T> nn<T>::nn(const std::vector<ui32> nn_shape,
     current_weight_method = weight_method;
     current_activation_function = sigmoid;
     last_layer_current_activation_function = linear;
+    current_loss_method = mean_squared_error;
     learning_rate = 0.1;
     learning_rate_inertie = 0.05;
     shaping();
@@ -44,6 +47,7 @@ template <typename T> nn<T>::nn(const std::vector<ui32> nn_shape,
     current_weight_method = weight_method;
     current_activation_function = act_function;
     last_layer_current_activation_function = linear;
+    current_loss_method = mean_squared_error;
     learning_rate = 0.1;
     learning_rate_inertie = 0.05;
     shaping();
@@ -58,6 +62,7 @@ template <typename T> nn<T>::nn(const std::vector<ui32> nn_shape,
     current_weight_method = weight_method;
     current_activation_function = act_function;
     last_layer_current_activation_function = last_layer_act_function;
+    current_loss_method = mean_squared_error;
     learning_rate = 0.1;
     learning_rate_inertie = 0.05;
     shaping();

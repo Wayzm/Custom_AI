@@ -18,6 +18,13 @@ private:
     /// @brief Sub class with the list of weight functions
     enum class weight_functions{inertie, standard};
 
+    /// @brief Sub class with the list of loss functions
+    enum class loss_functions(mean_squared_error,
+                              mean_absolute_error,
+                              hinge_error,
+                              cross_entropy_error,
+                              mean_bias_error);
+
 public:
 
     /// @brief Default construction of the neural network
@@ -78,7 +85,17 @@ public:
 
     /*  ----------------    nn_solve.cpp -----------------  */
 
+    /*  ----------------    nn_error.cpp -----------------  */
+
+    /// @brief User function to get the error
+    /// @return err
     T get_err();
+
+    /// @brief User function to select the loss function
+    /// @param selected_method
+    void select_loss_method(loss_functions selected_method);
+
+
 
 private:
 
@@ -97,8 +114,31 @@ private:
     /// @brief Learning rates used for the weight update methods
     T learning_rate, learning_rate_inertie;
 
+    /*  ------------------   nn_error.cpp   -------------------- */
+
     /// @brief Error computed at teh output layer during the learning phase
     T err;
+
+    /// @brief Current loss function, default value being mean_squared_error
+    loss_functions current_loss_method;
+
+    /// @brief Compute the error depending on the current loss method
+    void compute_error();
+
+    /// @brief MSE method
+    void mean_squared_error();
+
+    /// @brief MAE method
+    void mean_absolute_error();
+
+    /// @brief MBE method
+    void mean_bias_error();
+
+    /// @brief HINGE method
+    void hinge_error();
+
+    /// @brief CE method
+    void cross_entropy_error();
 
     /* --------------------   nn_weight.cpp  -------------------  */
 
