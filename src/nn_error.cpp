@@ -4,6 +4,10 @@ template <typename T> T nn<T>::get_err(){
     return err;
 }
 
+template <typename T>void nn<T>::set_loss_method(loss_functions selected_method){
+    current_loss_method = selected_method;
+}
+
 template <typename T> void nn<T>::mean_squared_error(){
     const ui32 last_layer_index = nn_shape.size() - 1;
     err = 0.0;

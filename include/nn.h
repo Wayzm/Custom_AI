@@ -106,7 +106,7 @@ public:
 
     /// @brief User function to select the loss function
     /// @param selected_method
-    void select_loss_method(loss_functions selected_method);
+    void set_loss_method(loss_functions selected_method);
 
 
 
