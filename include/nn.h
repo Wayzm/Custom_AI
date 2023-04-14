@@ -59,8 +59,12 @@ public:
     /// @brief Destructor
     ~nn(){};
 
+    /// @brief User function to modify the learning rate, effective for both weight methods
+    /// @param rate
     void set_learning_rate(T rate);
 
+    /// @brief User function to modify the learning rate inertie, effictive only for the inertie weight method
+    /// @param rate
     void set_learning_rate_inertie(T rate);
 
     /* -------------------         nn_weight.cpp        --------------------------       */
