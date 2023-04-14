@@ -10,6 +10,14 @@ template <typename T> void nn<T>::set_weight_method(weight_functions selected_me
     weight_seed = seed;
 }
 
+template <typename T> void nn<T>::set_learning_rate(T rate){
+    learning_rate = rate;
+}
+
+template <typename T> void nn<T>::set_learning_rate_inertie(T rate){
+    learning_rate_inertie = rate;
+}
+
 template <typename T> void nn<T>::init_weight(const T min, const T max){
     assert(min <= max);
 
