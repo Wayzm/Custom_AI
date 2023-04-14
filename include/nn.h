@@ -85,6 +85,19 @@ public:
 
     /*  ----------------    nn_solve.cpp -----------------  */
 
+    /// @brief User function to train the neural network with an array of multiple inputs data
+    /// @param Inputs
+    void training_unsupervised(const std::vector<std::vector<T>> Inputs);
+
+    /// @brief User function to train the neural network with an array of inputs and corresponding outputs
+    /// @param Inputs
+    /// @param Outputs
+    void training_supervised(const std::vector<std::vector<T>> Inputs, const std::vector<std::vector<T>> Outputs);
+
+    /// @brief User function to use the neural network with a given input
+    /// @param Input
+    void compute_output(const std::vector<T> Input);
+
     /*  ----------------    nn_error.cpp -----------------  */
 
     /// @brief User function to get the error
@@ -237,13 +250,9 @@ private:
     /*  -------------- nn_solve.cpp ---------------     */
     std::vector<T> Output;
 
-    void training();
-
     void propagation();
 
     void backpropagation();
-
-    void compute_output();
 
 };
 
