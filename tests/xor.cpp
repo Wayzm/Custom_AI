@@ -1,35 +1,5 @@
 #include "xor.h"
 
-template <typename T> XOR<T>::XOR(){
-    Init();
-}
-
-template <typename T> void XOR<T>::Init(){
-    Input_test.resize(4);
-    Output_test.resize(4);
-    for(ui32 i = 0U; i < 4; ++i){
-        Input_test[i].resize(2);
-        Output_test[i].resize(1);
-    }
-
-    Input_test[0][0]  = 0;
-    Input_test[0][1]  = 0;
-    Output_test[0][0] = 0;
-
-    Input_test[1][0]  = 1;
-    Input_test[1][1]  = 1;
-    Output_test[1][0] = 0;
-
-    Input_test[2][0]  = 0;
-    Input_test[2][1]  = 1;
-    Output_test[2][0] = 1;
-
-    Input_test[3][0]  = 1;
-    Input_test[3][1]  = 0;
-    Output_test[3][0] = 1;
-
-}
-
 template <typename T> void XOR<T>::show_stats(nn<T> &nn, const ui32 iteration){
     std::cout << "erreur = " << nn.get_err() << std::endl;
     std::cout << "nombre d'iteration : " << iteration << std::endl;
@@ -65,3 +35,6 @@ template <typename T> void XOR<T>::Test(nn<T> &nn){
     std::cout << "result du réseau de neurones : " << *result << std::endl;
     std::cout << "exact result : " << exact_result << std::endl;
 }
+
+template class XOR<f32>;
+template class XOR<f64>;
