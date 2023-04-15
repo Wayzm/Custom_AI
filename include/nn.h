@@ -345,7 +345,7 @@ private:
                 std::cin>>nn_shape[i];
                 continue;
             }
-            std::cout<<"How many neurons in layer n°"<<i<<"?"<<std::endl;
+            std::cout<<"How many neurons in layer n°"<<i+1<<"?"<<std::endl;
             std::cin>>nn_shape[i];
         }
     };
