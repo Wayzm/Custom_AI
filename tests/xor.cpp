@@ -32,7 +32,7 @@ template <typename T> void XOR<T>::Test(nn<T> &nn){
     auto error_value_while_testing = nn.get_err();
 
     std::cout << "Erreur du test : "<< error_value_while_testing<<std::endl;
-    std::cout << "result du réseau de neurones : " << *result << std::endl;
+    std::cout << "result du réseau de neurones : " << result.data() << std::endl;
     std::cout << "exact result : " << exact_result << std::endl;
 }
 

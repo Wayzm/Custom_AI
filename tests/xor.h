@@ -6,14 +6,11 @@
 template <typename T> class XOR {
 public:
 	/// @brief Constructor
-	XOR();
+	XOR(){Init();}
 
 	/// @brief Launch the test with our neural network class
 	/// @param nn
-	void Test(nn<T> &nn){
-    	Init();
-	}
-
+	void Test(nn<T> &nn);
     /// @brief Displays the error value at a certain iteration
     /// @param nn
     /// @param iteration
