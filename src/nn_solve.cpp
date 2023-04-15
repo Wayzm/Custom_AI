@@ -1,7 +1,7 @@
 #include "nn.h"
 #include "compute.h"
 
-template <typename T> void nn<T>::training_supervised(const std::vector<T> Input, const std::vector<T> Output){
+template <class T> void nn<T>::training_supervised(const std::vector<T> Input, const std::vector<T> Output){
     assert(NN_layers[0].size() == Input.size());
     assert(this->Output.size() == Output.size());
     NN_layers[0] = Input;
@@ -15,7 +15,7 @@ template <typename T> void nn<T>::training_supervised(const std::vector<T> Input
     update_weight();
 }
 
-template <typename T> std::vector<T> nn<T>::compute_output(const std::vector<T> Input){
+template <class T> std::vector<T> nn<T>::compute_output(const std::vector<T> Input){
     assert(NN_layers[0].size() == Input.size());
     const ui32 last_layer_index = nn_shape.size() - 1;
     NN_layers[0] = Input;
@@ -26,7 +26,7 @@ template <typename T> std::vector<T> nn<T>::compute_output(const std::vector<T> 
     return(NN_layers[last_layer_index]);
 }
 
-template <typename T> void nn<T>::propagation(){
+template <class T> void nn<T>::propagation(){
     const ui32 last_layer_index = nn_shape.size() - 1;
     compute<T> c;
     for(ui32 i = 0U; i < last_layer_index - 1; ++i){
@@ -54,7 +54,7 @@ template <typename T> void nn<T>::propagation(){
         NN_layers[last_layer_activation][i] = last_layer_activation(NN_layers[last_layer_activation][i] + Bias_Matrix[last_layer_index - 1][i]);
 }
 
-template <typename T> void nn<T>::backpropagation(){
+template <class T> void nn<T>::backpropagation(){
     const ui32 last_layer_index = nn_shape.size() - 1;
     compute<T> c;
     for(ui32 i = last_layer_index - 1; i > 0U; --i){

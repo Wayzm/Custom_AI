@@ -9,7 +9,7 @@
 
 #include "nn_headers.h"
 
-template <typename T> class nn{
+template <class T> class nn{
 
 public:
     /// @brief Sub class with the list of the different implemented activation functions
@@ -28,23 +28,70 @@ public:
 public:
 
     /// @brief Default construction of the neural network
-    nn();
+    nn(){
+        err = {};
+        nn_shape = {};
+        current_weight_method = weight_functions::standard;
+        current_activation_function = activation_functions::sigmoid;
+        last_layer_current_activation_function = activation_functions::linear;
+        current_loss_method = loss_functions::mean_squared_error;
+        learning_rate = 0.1;
+        learning_rate_inertie = 0.05;
+        set_shape();
+        shaping();
+        init_weight(0, 1);
+    }
 
     /// @brief Determine the shape and the activation function for the propagation
     /// @param nn_shape
     /// @param act_function
-    nn(const std::vector<ui32> nn_shape, const activation_functions act_function);
+    nn(const std::vector<ui32> nn_shape,
+       const activation_functions act_function){
+        err = {};
+        this->nn_shape = nn_shape;
+        current_weight_method = weight_functions::standard;
+        current_activation_function = act_function;
+        last_layer_current_activation_function = activation_functions::linear;
+        current_loss_method = loss_functions::mean_squared_error;
+        learning_rate = 0.1;
+        learning_rate_inertie = 0.05;
+        shaping();
+        init_weight(0, 1);
+    }
 
     /// @brief Fix the shape and the weight actualisation method
     /// @param nn_shape
     /// @param weight_method
-    nn(const std::vector<ui32> nn_shape, const weight_functions weight_method);
+    nn(const std::vector<ui32> nn_shape,
+       const weight_functions weight_method){
+        err = {};
+        this->nn_shape = nn_shape;
+        current_weight_method = weight_method;
+        current_activation_function = activation_functions::sigmoid;
+        last_layer_current_activation_function = activation_functions::linear;
+        current_loss_method = loss_functions::mean_squared_error;
+        learning_rate = 0.1;
+        learning_rate_inertie = 0.05;
+        shaping();
+        init_weight(0, 1);
+    }
 
     /// @brief Fix the shape, the activation function for the propagation and the weight actualisation method
     /// @param nn_shape
     /// @param act_function
     /// @param weight_method
-    nn(const std::vector<ui32> nn_shape, const activation_functions act_function, const weight_functions weight_method);
+    nn(const std::vector<ui32> nn_shape, const activation_functions act_function, const weight_functions weight_method){
+        err = {};
+        this->nn_shape = nn_shape;
+        current_weight_method = weight_method;
+        current_activation_function = act_function;
+        last_layer_current_activation_function = activation_functions::linear;
+        current_loss_method = loss_functions::mean_squared_error;
+        learning_rate = 0.1;
+        learning_rate_inertie = 0.05;
+        shaping();
+        init_weight(0, 1);
+    };
 
     /// @brief Fix the shape, all activation functions and the weight actualisation method
     /// @param nn_shape
@@ -54,10 +101,18 @@ public:
     nn(const std::vector<ui32> nn_shape,
        const activation_functions act_function,
        const activation_functions last_layer_act_function,
-       const weight_functions weight_method);
-
-    /// @brief Destructor
-    ~nn(){};
+       const weight_functions weight_method){
+        err = {};
+        this->nn_shape = nn_shape;
+        current_weight_method = weight_method;
+        current_activation_function = act_function;
+        last_layer_current_activation_function = last_layer_act_function;
+        current_loss_method = loss_functions::mean_squared_error;
+        learning_rate = 0.1;
+        learning_rate_inertie = 0.05;
+        shaping();
+        init_weight(0, 1);
+    };
 
     /// @brief User function to modify the learning rate, effective for both weight methods
     /// @param rate
@@ -246,10 +301,54 @@ private:
     /*  -------------- nn_shaping.cpp -------------     */
 
     /// @brief Memory allocation of all structures in the nn
-    void shaping();
+    void shaping(){
+        assert(nn_shape.size() > 1); // Verification that our nn has an input/output layer
+        const ui32 number_of_layers = nn_shape.size();
+
+        /*  SHAPING THE THE NEURAL NETWORK  */
+        NN_layers.resize(number_of_layers);
+        NN_layers_D.resize(number_of_layers - 1);
+        Weight_Matrix.resize(number_of_layers - 1);
+        Weight_Matrix_D.resize(number_of_layers - 1);
+        Bias_Matrix.resize(number_of_layers - 1);
+        Bias_Matrix_D.resize(number_of_layers - 1);
+        Output.resize(nn_shape[number_of_layers -1]);
+
+        for(auto i = 0U; i < number_of_layers - 1; ++i){
+            NN_layers.resize(nn_shape[i]);
+            NN_layers_D.resize(nn_shape[i + 1]);
+            Weight_Matrix.resize(nn_shape[i + 1] * nn_shape[i]);
+            Weight_Matrix_D.resize(nn_shape[i + 1] * nn_shape[i]);
+            Bias_Matrix.resize(nn_shape[i + 1]);
+            Bias_Matrix_D.resize(nn_shape[i + 1]);
+        }
+        // OUTPUT LAYER
+        NN_layers[number_of_layers - 1].resize(nn_shape[number_of_layers - 1]);
+
+    };
 
     /// @brief Set the nn_shape from user input
-    void set_shape();
+    void set_shape(){
+        ui32 number_of_layers;
+
+        std::cout<<"How many different layers do you wish to have in the neural network? Input/Output included."<<std::endl;
+        std::cin>>number_of_layers;
+        nn_shape.reserve(number_of_layers);
+        for(auto i = 0U; i < number_of_layers; ++i){
+            if(i == 0U){
+                std::cout<<"How many neurons(usually the size of the data) in the input layer?"<<std::endl;
+                std::cin>>nn_shape[i];
+                continue;
+            }
+            if(i == number_of_layers - 1){
+                std::cout<<"How many neurons(usually the number of desired outcomes) in the output layer?"<<std::endl;
+                std::cin>>nn_shape[i];
+                continue;
+            }
+            std::cout<<"How many neurons in layer n°"<<i<<"?"<<std::endl;
+            std::cin>>nn_shape[i];
+        }
+    };
 
     /*  -------------- nn_solve.cpp ---------------     */
     std::vector<T> Output;

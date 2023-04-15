@@ -14,7 +14,7 @@
 
 // So, as we though there are full matrices in weight/bias
 
-template <typename T> class compute{
+template <class T> class compute{
 public:
     compute();
 

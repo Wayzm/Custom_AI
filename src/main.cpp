@@ -2,6 +2,6 @@
 
 
 int main(int argc, char** argv){
-    nn<f64> nn;
+    nn<f32> nn;
     return 0;
 }

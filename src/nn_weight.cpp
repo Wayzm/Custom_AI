@@ -1,24 +1,24 @@
 #include "nn.h"
 #include "compute.h"
 
-template <typename T> void  nn<T>::set_weight_method(weight_functions selected_method){
+template <class T> void nn<T>::set_weight_method(weight_functions selected_method){
     current_weight_method = selected_method;
 }
 
-template <typename T> void nn<T>::set_weight_method(weight_functions selected_method, const ui32 seed){
+template <class T> void nn<T>::set_weight_method(weight_functions selected_method, const ui32 seed){
     current_weight_method = selected_method;
     weight_seed = seed;
 }
 
-template <typename T> void nn<T>::set_learning_rate(T rate){
+template <class T> void nn<T>::set_learning_rate(T rate){
     learning_rate = rate;
 }
 
-template <typename T> void nn<T>::set_learning_rate_inertie(T rate){
+template <class T> void nn<T>::set_learning_rate_inertie(T rate){
     learning_rate_inertie = rate;
 }
 
-template <typename T> void nn<T>::init_weight(const T min, const T max){
+template <class T> void nn<T>::init_weight(const T min, const T max){
     assert(min <= max);
 
     // Used to generate a random number engine
@@ -50,7 +50,7 @@ template <typename T> void nn<T>::init_weight(const T min, const T max){
             element = 0;
 }
 
-template <typename T> void nn<T>::inertie(){
+template <class T> void nn<T>::inertie(){
     /* CONSTRUCTION OF BLAS APPLICATION */
     compute<T> c;
     /* MAIN LOOP */
@@ -82,7 +82,7 @@ template <typename T> void nn<T>::inertie(){
     }
 }
 
-template <typename T> void nn<T>::standard(){
+template <class T> void nn<T>::standard(){
     /* CONSTRUCTION OF BLAS APPLICATION */
     compute<T> c;
     /* MAIN LOOP */
@@ -103,7 +103,7 @@ template <typename T> void nn<T>::standard(){
     }
 }
 
-template <typename T> void nn<T>::update_weight(){
+template <class T> void nn<T>::update_weight(){
   switch(current_weight_method){
     case weight_functions::inertie:
       inertie();

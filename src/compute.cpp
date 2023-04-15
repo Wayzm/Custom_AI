@@ -1,11 +1,11 @@
 #include "compute.h"
 
-template <typename T> compute<T>::compute(){
+template <class T> compute<T>::compute(){
     temp_vector = {};
     temp_matrix = {};
 }
 
-template <typename T> void compute<T>::axpy(const std::vector<T> x,
+template <class T> void compute<T>::axpy(const std::vector<T> x,
                                             const T a,
                                             std::vector<T> y){
     /* MEMORY MANANGEMENT */
@@ -23,7 +23,7 @@ template <typename T> void compute<T>::axpy(const std::vector<T> x,
     y = temp_vector;
 }
 
-template <typename T> void compute<T>::emm(const std::vector<T> X,
+template <class T> void compute<T>::emm(const std::vector<T> X,
                                            const ui32 rows_x,
                                            const ui32 cols_x,
                                            const std::vector<T> Y,
@@ -57,7 +57,7 @@ template <typename T> void compute<T>::emm(const std::vector<T> X,
     Z = temp_matrix;
 }
 
-template <typename T> void compute<T>::normalisation(std::vector<T> vector){
+template <class T> void compute<T>::normalisation(std::vector<T> vector){
     const ui32 vec_size = vector.size();
     T max = 0;
     for(ui32 i = 0U; i < vec_size; ++i){
