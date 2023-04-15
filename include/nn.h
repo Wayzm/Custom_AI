@@ -333,7 +333,7 @@ private:
 
         std::cout<<"How many different layers do you wish to have in the neural network? Input/Output included."<<std::endl;
         std::cin>>number_of_layers;
-        nn_shape.reserve(number_of_layers);
+        this->nn_shape.resize(number_of_layers);
         for(auto i = 0U; i < number_of_layers; ++i){
             if(i == 0U){
                 std::cout<<"How many neurons(usually the size of the data) in the input layer?"<<std::endl;
